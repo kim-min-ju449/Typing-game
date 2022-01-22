@@ -9,6 +9,18 @@ likeButtons.forEach((like)=>{
     })
 })
 
+
+function addItem (){
+    if(inputText.value.trim() ==="") return;
+
+}
+
+inputText.addEventListener("keypress",(e)=>{
+    if(e.keyCode ===13){
+        addItem()
+    }
+})
+
 addButton.addEventListener("click", function() {
 
 
@@ -38,8 +50,32 @@ addButton.addEventListener("click", function() {
     manage.appendChild(clearIcon)
     
     const li = document.createElement("li");
+
+    like.addEventListener("click", ()=>{
+        const target = e.target;
+        if(target.innerText ==="favorite"){
+            target.innerText = "favorite_border"
+        }else{
+            target.innerText="favorite"
+        }
+        
+    })
+    clearIcon.addEventListener("click", (e)=>{
+        const target = e.target.parentNode.parentNode;
+        target.classList.add("done")
+
+    })
+    clearIcon.addEventListener("click", (e)=>{
+        const target = e.target.parentNode.parentNode;
+        list.removeChild(target)
+
+    })
     li.innerText = inputText.value;
     li.appendChild(like)
     li.appendChild(item)
     list.appendChild(li)
+
+    inputText.value="";
 })
+
+addButton.addEventListener("click", addItem)
