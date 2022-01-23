@@ -1,81 +1,36 @@
-const inputText = document.querySelector(".input-text");
-const addButton = document.querySelector(".add-button");
-const list = document.querySelector(".list");
+const wordInput = document.querySelector("#word-input")
+const currentWord = document.querySelector("#current-word")
+const scoreDisplay = document.querySelector("#score")
+const timeDisplay = document.querySelector("#time")
+const messageDisplay = document.querySelector("#message")
 
-const likeButtons = document.querySelectorAll(".like");
-likeButtons.forEach((like)=>{
-    like.addEventListener("click",()=>{
-        console.log("clicked")
-    })
+let words = ["banana", "key","car","javascript","scalper"];
+let score = 0;
+
+
+const randomIndex = Math.floor(Math.random()*5);
+
+
+wordInput.addEventListener("input",e=>{
+    const typedText = e.target.value;
+    const currentText = currentWord.innerText;
+    if(typedText.toUpperCase() === currentText.toUpperCase()){
+        addScore()
+        setNewWord()
+    }
+   
 })
 
-
-function addItem (){
-    if(inputText.value.trim() ==="") return;
-
+function setNewWord(){
+    wordInput.value = "";
+    messageDisplay.innerText = "Now Playing!!"
+    const randomIndex = Math.floor(Math.random()*words.length);
+    currentWord.innerText = words[randomIndex]
 }
 
-inputText.addEventListener("keypress",(e)=>{
-    if(e.keyCode ===13){
-        addItem()
-    }
-})
-
-addButton.addEventListener("click", function() {
-
-
-    //like
-    const like = document.createElement("span");
-    const likeIcon = document.createElement("i");
-    like.classList.add("like");
-    likeIcon.classList.add("material-icons");
-    likeIcon.innerText = "favorite_border";
-    like.appendsChild(likeIcon);
-
-    //item
-    const item = document.createElement("span");
-    item.classList.add("item");
-    item.innerText = inputText.value;
-
-    //manage
-    const check = document.createElement("span");
-    const checkIcon = document.createElement("i");
-    const clearIcon = document.createElement("i");
-    checkIcon.classList.add("material-icons","check");
-    checkIcon.classList.add("material-icons","clear");
-    checkIcon.innerText="check"
-    clearIcon.innerText="clear"
-    manage.classList.add("manage")
-    manage.appendChild(checkIcon)
-    manage.appendChild(clearIcon)
+function addScore(){
+    score = score +1;
     
-    const li = document.createElement("li");
+    scoreDisplay.innerText = score
 
-    like.addEventListener("click", ()=>{
-        const target = e.target;
-        if(target.innerText ==="favorite"){
-            target.innerText = "favorite_border"
-        }else{
-            target.innerText="favorite"
-        }
-        
-    })
-    clearIcon.addEventListener("click", (e)=>{
-        const target = e.target.parentNode.parentNode;
-        target.classList.add("done")
-
-    })
-    clearIcon.addEventListener("click", (e)=>{
-        const target = e.target.parentNode.parentNode;
-        list.removeChild(target)
-
-    })
-    li.innerText = inputText.value;
-    li.appendChild(like)
-    li.appendChild(item)
-    list.appendChild(li)
-
-    inputText.value="";
-})
-
-addButton.addEventListener("click", addItem)
+}
