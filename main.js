@@ -1,89 +1,90 @@
-const inputText = document.querySelector(".input-text");
-const addButton = document.querySelector(".add-button");
-const list = document.querySelector(".list");
+const wordInput = document.querySelector("#word-input")
+const currentWord = document.querySelector("#current-word")
+const scoreDisplay = document.querySelector("#score")
+const timeDisplay = document.querySelector("#time")
+const messageDisplay = document.querySelector("#message")
 
-const likeButtons = document.querySelectorAll(".like");
-//likeButtons.forEach((like)=>{
-//    like.addEventListener("click",()=>{
-//        console.log("clicked")
-//    })
-//})
+const GAME_TIME = 10;
 
+const API_URL = "https://random-word-api.herokuapp.com/word?number=100"
 
-function addItem (){
-    if(inputText.value.trim() ==="") return;
-        //like
-        const like = document.createElement("span");
-        const likeIcon = document.createElement("i");
-        like.classList.add("like");
-        likeIcon.classList.add("material-icons");
-        likeIcon.innerText = "favorite_border";
-        like.appendChild(likeIcon);
-    
-        //item
-        const item = document.createElement("span");
-        item.classList.add("item");
-        item.innerText = inputText.value;
-    
-        //manage
-        const manage = document.createElement("span");
-        const check = document.createElement("span");
-        const checkIcon = document.createElement("i");
-        const clearIcon = document.createElement("i");
-        checkIcon.classList.add("material-icons","check");
-        checkIcon.classList.add("material-icons","clear");
-        checkIcon.innerText="check"
-        clearIcon.innerText="clear"
-        manage.classList.add("manage")
-        manage.appendChild(checkIcon)
-        manage.appendChild(clearIcon)
-        
-        const li = document.createElement("li");
-    
-        like.addEventListener("click", ()=>{
-            const target = e.target;
-            if(target.innerText ==="favorite"){
-                target.innerText = "favorite_border"
-            }else{
-                target.innerText="favorite"
-            }
-            
-        })
-        clearIcon.addEventListener("click", (e)=>{
-            const target = e.target.parentNode.parentNode;
-            target.classList.add("done")
-    
-        })
-        clearIcon.addEventListener("click", (e)=>{
-            const target = e.target.parentNode.parentNode;
-            list.removeChild(target)
-    
-        })
+let words = ["banana", "key","car","javascript","scalper"];
+let score = 0;
+let time = 0;
+let timeInterval;
+let isPlaying = false;
+let isReady = false;
 
-        
-        li.appendChild(like)
-        li.appendChild(item)
-        li.appendChild(manage)
-        list.appendChild(li)
+init()
 
-        inputText.value="";
-        inputText.focus()
+//function init(){
+//    const res = fetch(API_URL).then(res=> res.json()).then((data)=>words = data);
+//    console.log(res)
 
+//}
+
+async function init(){
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    words = data.filter(item=>{
+        return item.length< 7
+        isReady = true;
+    })
+    console.log(words)
 }
 
-inputText.addEventListener("keypress",e=>{
-    if(e.keyCode ===13){
-        console.log(e)
-        addItem()
+const randomIndex = Math.floor(Math.random()*5);
+
+time=GAME_TIME;
+
+
+wordInput.addEventListener("input",e=>{
+    const typedText = e.target.value;
+    const currentText = currentWord.innerText;
+    if(typedText.toUpperCase() === currentText.toUpperCase()){
+        addScore()
+        setNewWord()
     }
+   
 })
+function countDown(){
+    console.log(time)
+    time = time -1;
+    timeDisplay.innerText = time;
+    if(time ===0){
+        gameover();
+    }
+}
 
-addButton.addEventListener("click", function() {
+function gameover(){
+    console.log("game over")
+    isPlaying = false;
+    time =0;
+    clearInterval(timeInterval)
+    timeInterval = null;
+    messageDisplay.innerText = "GAME OVER!!"
+    score = 0;
+}
 
 
+function setNewWord(){
+    time = GAME_TIME;
+    wordInput.value = "";
+    messageDisplay.innerText = "Now Playing!!"
+    const randomIndex = Math.floor(Math.random()*words.length);
+    currentWord.innerText = words[randomIndex]
 
+    if(!isPlaying){
+        timeInterval = setInterval(countDown, 1000)
+        isPlaying = true;
+    }
 
+    timeInterval = setInterval(countDown, 1000)
+}
+
+function addScore(){
+    score = score +1;
     
-})
+    scoreDisplay.innerText = score
 
-addButton.addEventListener("click", addItem)
+}
