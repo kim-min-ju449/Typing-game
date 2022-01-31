@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-6 mx-auto">
                 <p nclass="lead">
-                    주어진 단어를 <span class="text-sucess">10</span>초안에 타이핑 하기
+                    주어진 단어를 <span class="text-sucess">5</span>초안에 타이핑 하기
                 </p>
                 <h2 class="display-2 mb-5" id="current-word">start</h2>
                 <input type="text" class="form-control form-control-lg" placeholder="start typing.." id="word-input">
@@ -40,14 +40,15 @@
                 <div class="card card-body bg-secondary text-white">
                     <h5>안내방법</h5>
                     <p>각 단어를 주어진 시간안에 타이핑하고, 다시 시작하려면 주어진 단어를 입력하세요</p>
+                    <p>밑에 원하는 단어를 고르신후 start를 치시면 시작됩니다.</p>
                 </div>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-md-12">
-                <button class="col-12 col-sm-3 btn btn-primary" onclick="main.js">초급</button>
-                <button class="col-12 col-sm-3 btn btn-warning">중급</button>
-                <button class="col-12 col-sm-3 btn btn-success">상급</button>
+                <button class="col-12 col-sm-3 btn btn-primary" onclick="l1()">일반(아무거나렌덤)</button>
+                <button class="col-12 col-sm-3 btn btn-warning" onclick="l2()">음식단어</button>
+                <button class="col-12 col-sm-3 btn btn-success" onclick="l3()">뜻좋은단어(가장 어려움)</button>
             </div>
         </div>
     </div>
