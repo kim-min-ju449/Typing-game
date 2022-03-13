@@ -8,6 +8,7 @@ const GAME_TIME = 5;
 
 const API_URL = "https://random-word-api.herokuapp.com/word?number=100"
 function l1(){
+    alert("일반을 선택하였습니다");
     let words = ["banana", "key","car","javascript","scalper"];
     let score = 0;
     let time = 0;
@@ -17,11 +18,7 @@ function l1(){
 
     init()
 
-    //function init(){
-    //    const res = fetch(API_URL).then(res=> res.json()).then((data)=>words = data);
-    //    console.log(res)
 
-    //}
 
     async function init(){
         const res = await fetch(API_URL);
@@ -90,6 +87,7 @@ function l1(){
     }
 }
 function l2(){
+    alert("음식단어를 선택하였습니다");
     let words = ["banana", "steak","coffee","chocolate","bread","juice","noodle","chicken","seafood","spaghetti","avocado","bagel","bacon","doughnut","espresso","peas","cabbage","yogurt","cutlet","outmeal","cucumber","butter","salmon"];
     let score = 0;
     let time = 0;
@@ -122,6 +120,7 @@ function l2(){
     }
 
     function gameover(){
+        alert("게임오버 되었습니다")
         console.log("game over")
         isPlaying = false;
         time =0;
@@ -155,6 +154,7 @@ function l2(){
     }
 }
 function l3(){
+    alert("뜻좋은단어를 선택하였습니다");
     let words = ["miracle", "connet","adorable","mandy","mable","iris","cooing","treasure","heimish","delight","seraphic","azure","witty","elin","bliss","starry","mellow","eunoia","pitapat","sonorous","lucid","superb","illusion","flutter","cherish"];
     let score = 0;
     let time = 0;
