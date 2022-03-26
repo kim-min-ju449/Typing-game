@@ -1,40 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>타이핑게임</title>
     <style>
-        body{
-            display:block;
-            margin:0;  
+        body {
+            display: block;
+            margin: 0;
         }
-        .main{
+
+        .main {
             position: relative;
             background-repeat: no-repeat;
             background-position: center center;
             height: 50vh;
-            width:100%;
+            width: 100%;
             background-image: url(https://cdn.pixabay.com/photo/2016/11/22/21/26/notebook-1850613_1280.jpg);
             -webkit-background-size: cover;
             background-size: cover;
         }
-        .info{
-            display:inline-block;
+
+        .info {
+            display: inline-block;
+            position: relative;
+        }
+
+        .info .text {
+            position: absolute;
+            top: 30%;
+            left: 40%;
+            z-index:100;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="main">
-            
+
         </div>
         <div class="info">
             <img src="https://cdn.pixabay.com/photo/2013/04/01/10/57/manual-98728_1280.png" width="200px">
             <img src="말풍선.png">
+            <div class="text">
+                 <h5>안내방법<br>
+                    각 단어를 주어진 시간안에 타이핑하고, 다시 시작하려면 주어진 단어를 입력하세요<br>
+                    밑에 원하는 단어를 고르신후 start를 치시면 시작됩니다.</h5>
+            </div>
         </div>
     </div>
-    
+
 </body>
+
 </html>
