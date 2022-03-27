@@ -54,7 +54,7 @@ function l1(){
     }
 
     function gameover(){
-        console.log("game over")
+        console.log("game over");
         isPlaying = false;
         time =0;
         clearInterval(timeInterval)
@@ -120,7 +120,7 @@ function l2(){
     }
 
     function gameover(){
-        alert("게임오버 되었습니다")
+        alert("게임오버 되었습니다 새로고침해서 다시 시작해 주세요");
         console.log("game over")
         isPlaying = false;
         time =0;
@@ -187,7 +187,7 @@ function l3(){
     }
 
     function gameover(){
-        console.log("game over")
+        alert("게임오버 되었습니다 새로고침해서 다시 시작해 주세요");
         isPlaying = false;
         time =0;
         clearInterval(timeInterval)
